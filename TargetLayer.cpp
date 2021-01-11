@@ -19,8 +19,8 @@ bool __fastcall TargetLayer::initHook(CCLayer* self) {
 	float width = HOF->getScaledContentSize().width;
 
 	HOF->setPositionX(0);
-	Featured->setPositionX(-width - 10);
-	Search->setPositionX(width + 10);
+	Featured->setPositionX(-width - 12);
+	Search->setPositionX(width + 12);
 
 	return result;
 }

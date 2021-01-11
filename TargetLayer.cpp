@@ -23,9 +23,6 @@ bool __fastcall TargetLayer::initHook(CCLayer* self) {
 		CCNode* Saved = (CCNode*)menuObjs->objectAtIndex(1);
 		CCNode* Scores = (CCNode*)menuObjs->objectAtIndex(2);
 
-
-		float width = HOF->getScaledContentSize().width;
-
 		Featured->setPositionX(Create->getPositionX());
 		HOF->setPositionX(Saved->getPositionX());
 		Search->setPositionX(Scores->getPositionX());

@@ -12,15 +12,20 @@ bool __fastcall TargetLayer::initHook(CCLayer* self) {
 
 	menu->removeChild(mapPack, true);
 
-	CCNode* HOF = (CCNode*)menuObjs->objectAtIndex(7);
 	CCNode* Featured = (CCNode*)menuObjs->objectAtIndex(6);
+	CCNode* HOF = (CCNode*)menuObjs->objectAtIndex(7);
 	CCNode* Search = (CCNode*)menuObjs->objectAtIndex(8);
 
+	CCNode* Create = (CCNode*)menuObjs->objectAtIndex(0);
+	CCNode* Saved = (CCNode*)menuObjs->objectAtIndex(1);
+	CCNode* Scores = (CCNode*)menuObjs->objectAtIndex(2);
+
+	
 	float width = HOF->getScaledContentSize().width;
 
-	HOF->setPositionX(0);
-	Featured->setPositionX(-width - 12);
-	Search->setPositionX(width + 12);
+	Featured->setPositionX(Create->getPositionX());
+	HOF->setPositionX(Saved->getPositionX());
+	Search->setPositionX(Scores->getPositionX());
 
 	return result;
 }

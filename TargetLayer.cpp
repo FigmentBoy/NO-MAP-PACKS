@@ -1,32 +1,35 @@
 #include "TargetLayer.h"
 #include "MinHook.h"
+#include "GameManager.h"
 
 bool __fastcall TargetLayer::initHook(CCLayer* self) {
+	void* gm = GameManager::getSharedState();
 	bool result = init(self);
-	auto children = self->getChildren();
-	CCMenu* menu = (CCMenu*)children->objectAtIndex(1);
+	if (!GameManager::getGameVariable(gm, "mp-show")) {
+		auto children = self->getChildren();
+		CCMenu* menu = (CCMenu*)children->objectAtIndex(1);
 
-	auto menuObjs = menu->getChildren();
+		auto menuObjs = menu->getChildren();
 
-	CCNode* mapPack = (CCNode*)menuObjs->objectAtIndex(8);
+		CCNode* mapPack = (CCNode*)menuObjs->objectAtIndex(8);
 
-	menu->removeChild(mapPack, true);
+		menu->removeChild(mapPack, true);
 
-	CCNode* Featured = (CCNode*)menuObjs->objectAtIndex(6);
-	CCNode* HOF = (CCNode*)menuObjs->objectAtIndex(7);
-	CCNode* Search = (CCNode*)menuObjs->objectAtIndex(8);
+		CCNode* Featured = (CCNode*)menuObjs->objectAtIndex(6);
+		CCNode* HOF = (CCNode*)menuObjs->objectAtIndex(7);
+		CCNode* Search = (CCNode*)menuObjs->objectAtIndex(8);
 
-	CCNode* Create = (CCNode*)menuObjs->objectAtIndex(0);
-	CCNode* Saved = (CCNode*)menuObjs->objectAtIndex(1);
-	CCNode* Scores = (CCNode*)menuObjs->objectAtIndex(2);
+		CCNode* Create = (CCNode*)menuObjs->objectAtIndex(0);
+		CCNode* Saved = (CCNode*)menuObjs->objectAtIndex(1);
+		CCNode* Scores = (CCNode*)menuObjs->objectAtIndex(2);
 
-	
-	float width = HOF->getScaledContentSize().width;
 
-	Featured->setPositionX(Create->getPositionX());
-	HOF->setPositionX(Saved->getPositionX());
-	Search->setPositionX(Scores->getPositionX());
+		float width = HOF->getScaledContentSize().width;
 
+		Featured->setPositionX(Create->getPositionX());
+		HOF->setPositionX(Saved->getPositionX());
+		Search->setPositionX(Scores->getPositionX());
+	}
 	return result;
 }
 

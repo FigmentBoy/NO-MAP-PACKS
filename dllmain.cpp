@@ -1,10 +1,14 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include <cocos2d.h>
 #include "MinHook.h"
+#include "GameManager.h";
+#include "MenuOptions.h";
 #include "TargetLayer.h";
 
 DWORD WINAPI my_thread(void* hModule) {
     MH_Initialize();
+    GameManager::mem_init();
+    MenuOptions::mem_init();
     TargetLayer::mem_init();
     MH_EnableHook(MH_ALL_HOOKS);
 
